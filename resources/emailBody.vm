@@ -1,0 +1,47 @@
+#if( $photoRecords!=$null && $photoRecords.size()>0)
+  PHOTOS
+  New Photos of count $photoRecords.size() has been added
+
+  #foreach($photoRecord in $photoRecords)
+         From: $photoRecord.getFrom().getName()
+         Description: $photoRecord.getDescription()
+         Time: $photoRecord.getCreatedTime()
+
+     #if($photoRecord.getComments() !=$null && $photoRecord.getComments().getRecords()!=$null && $photoRecord.getComments().getRecords().size()>0)
+                COMMENTS
+
+     #foreach($comment in $photoRecord.getComments().getRecords())
+                    From: $comment.getFrom().getName()
+                    Description: $comment.getDescription()
+                    Time: $comment.getCreatedTime()
+     #end
+     #end
+
+  #end
+
+#end
+
+
+#if( $feedRecords!=$null && $feedRecords.size()>0)
+  POSTS
+  New Posts of count $feedRecords.size() has been added
+
+  #foreach($feedRecord in $feedRecords)
+         From: $feedRecord.getFrom().getName()
+         Description: $feedRecord.getDescription()
+         Time: $feedRecord.getCreatedTime()
+
+     #if($feedRecord.getComments() !=$null && $feedRecord.getComments().getRecords()!=$null && $feedRecord.getComments().getRecords().size()>0)
+                COMMENTS
+
+     #foreach($comment in $feedRecord.getComments().getRecords())
+                    From: $comment.getFrom().getName()
+                    Description: $comment.getDescription()
+                    Time: $comment.getCreatedTime()
+
+     #end
+     #end
+
+  #end
+
+#end
