@@ -1,44 +1,18 @@
-#if( $photoRecords!=$null && $photoRecords.size()>0)
-  PHOTOS
-  New Photos of count $photoRecords.size() has been added
+#foreach($result in $resultList)
+  TYPE OF UPDATE - $result.getResultType().name().toUpperCase()
 
-  #foreach($photoRecord in $photoRecords)
-         From: $photoRecord.getFrom().getName()
-         Description: $photoRecord.getDescription()
-         Time: $photoRecord.getCreatedTime()
+  #foreach($record in $result.getRecords())
+         From: $record.getFrom().getName()
+         Description: $record.getDescription()
+         Time: $record.getTime()
 
-     #if($photoRecord.getComments() !=$null && $photoRecord.getComments().getRecords()!=$null && $photoRecord.getComments().getRecords().size()>0)
+     #if($record.getComments() !=$null && $record.getComments().getRecords()!=$null && $record.getComments().getRecords().size()>0)
                 COMMENTS
 
-     #foreach($comment in $photoRecord.getComments().getRecords())
+     #foreach($comment in $record.getComments().getRecords())
                     From: $comment.getFrom().getName()
                     Description: $comment.getDescription()
-                    Time: $comment.getCreatedTime()
-     #end
-     #end
-
-  #end
-
-#end
-
-
-#if( $feedRecords!=$null && $feedRecords.size()>0)
-  POSTS
-  New Posts of count $feedRecords.size() has been added
-
-  #foreach($feedRecord in $feedRecords)
-         From: $feedRecord.getFrom().getName()
-         Description: $feedRecord.getDescription()
-         Time: $feedRecord.getCreatedTime()
-
-     #if($feedRecord.getComments() !=$null && $feedRecord.getComments().getRecords()!=$null && $feedRecord.getComments().getRecords().size()>0)
-                COMMENTS
-
-     #foreach($comment in $feedRecord.getComments().getRecords())
-                    From: $comment.getFrom().getName()
-                    Description: $comment.getDescription()
-                    Time: $comment.getCreatedTime()
-
+                    Time: $comment.getTime()
      #end
      #end
 

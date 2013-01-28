@@ -1,6 +1,10 @@
 package utils;
 
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,16 +30,9 @@ public class HttpUtil {
         return matcher.group(1);
     }
 
-    private static String executeHttpGet(String url) throws IOException {
-        URLConnection urlConnection = new URL(url).openConnection();
-        InputStream inputStream = urlConnection.getInputStream();
-        InputStreamReader in = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(in);
-        String line, result = "";
-        while ((line = bufferedReader.readLine()) != null) {
-            result += line;
-        }
-        bufferedReader.close();
-        return result;
+
+    private static String executeHttpGet(String url) throws IOException, RestClientException {
+        ResponseEntity<String> response = new RestTemplate().getForEntity(url, String.class, null);
+        return response.getBody();
     }
 }

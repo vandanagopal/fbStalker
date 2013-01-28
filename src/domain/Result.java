@@ -1,6 +1,5 @@
 package domain;
 
-import ch.lambdaj.Lambda;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -11,15 +10,21 @@ public class Result {
 
     @JsonProperty("data")
     List<Record> records;
+    private ResultType resultType;
 
     public Result() {
     }
 
-    public Result(List<Record> photoRecords) {
-        this.records = photoRecords;
+    public Result(List<Record> records, ResultType resultType) {
+        this.records = records;
+        this.resultType = resultType;
     }
 
     public List<Record> getRecords() {
         return records;
+    }
+
+    public ResultType getResultType() {
+        return resultType;
     }
 }

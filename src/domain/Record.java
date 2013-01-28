@@ -20,9 +20,10 @@ public class Record {
     private From from;
     private Comments comments;
     private String story;
+    private String type;
 
-    public DateTime getCreatedTime() {
-        return createdTime;
+    public DateTime getTime() {
+        return createdTime == null ? updatedTime : createdTime;
     }
 
     public DateTime getUpdatedTime() {
@@ -37,6 +38,14 @@ public class Record {
         return message;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Comments getComments() {
         return comments;
     }
@@ -49,14 +58,14 @@ public class Record {
         return story;
     }
 
-    public String getDescription(){
-        String description="";
-        if(StringUtils.isNotEmpty(name))
-            description+= name;
-        if(StringUtils.isNotEmpty(message))
-            description+= message;
-        if(StringUtils.isNotEmpty(story))
-            description+=story;
+    public String getDescription() {
+        String description = "";
+        if (StringUtils.isNotEmpty(name))
+            description += name;
+        if (StringUtils.isNotEmpty(message))
+            description += message;
+        if (StringUtils.isNotEmpty(story))
+            description += story;
         return description;
     }
 }

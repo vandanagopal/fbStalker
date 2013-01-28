@@ -1,23 +1,24 @@
 package utils;
 
-import domain.Record;
+import domain.Result;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
 import java.io.StringWriter;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class VelocityTemplateUtil {
 
     private static Template template;
 
-    public static String constructEmailBody(List<Record> photoRecords, List<Record> feedRecords){
+    public static String constructEmailBody(ArrayList<Result> resultList){
+
         Template template = getTemplate();
         VelocityContext velocityContext = new VelocityContext();
-        velocityContext.put("photoRecords",photoRecords);
-        velocityContext.put("feedRecords",feedRecords);
+        velocityContext.put("resultList",resultList);
         StringWriter writer = new StringWriter();
         template.merge(velocityContext, writer);
         return writer.toString();
